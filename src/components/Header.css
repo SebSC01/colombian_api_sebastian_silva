@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Migiera';
+    src: url('./Font/Magiera Script.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+.h1-content{
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #000000;
+    font-size: Migiera;
+}

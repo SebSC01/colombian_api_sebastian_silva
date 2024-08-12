@@ -1,0 +1,81 @@
+.button-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Espacio entre los botones */
+}
+
+.button-list li {
+    margin: 0 10px; /* Margen entre los botones */
+}
+
+.button-list button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.list_president {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* La altura de la pantalla completa */
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    width: 40%; /* Ajusta el ancho según tus necesidades */
+    margin: auto;
+    background-color: #f9f9f9;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.title{
+    align-items: center;
+    margin: auto;
+}
+
+/* Content.css */
+
+.list_attractions h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.list_attractions h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.city-section {
+    margin-left: 20px;
+}
+
+.city-section h4 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.city-section ul {
+    list-style-type: none;
+    padding-left: 40px;
+}
+
+.city-section li {
+    margin-bottom: 5px;
+}

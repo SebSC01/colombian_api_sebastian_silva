@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.wrapper {
+  min-height: calc(100% - 4rem);
+
+}
+.footer {
+  width: 100%;
+  height: 15rem;
+  background-color: #323232
+}
+.p{
+  margin: 10px;
+  font-size: medium;
+  color: #ffffff;
+} 
+
+.footer .grupo1{
+  width: 100%;
+  max-width: 1200px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column(2);
+  -ms-flex-align: center;
+  padding: 45px;
+  align-items: center;
+}
+
+.footer .grupo1 .box h2{
+  color:#ffffff;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.footer .grupo1 .box p{
+  color: #efefef;
+  margin-bottom: 10px;
+}
+
+
+
+.footer .grupo2{
+  background-color: #646363;
+  padding: 15px 10px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer .grupo2 small{
+  font-size: 15px;
+}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './Content.css';
+import './Content.css'; //Llamado al archivo de estilos
 
 
 function App() {
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategory, setSelectedCategory] = useState(null); 
     const [data, setData] = useState(null);
-    const [responseTime, setResponseTime] = useState(null);
+    const [responseTime, setResponseTime] = useState(null); //Constante que alamcena el tiempo de respuesta de la API
 
     const handleButtonClick = (category) => {
         setSelectedCategory(category);
@@ -15,8 +15,7 @@ function App() {
 
     useEffect(() => {
         if (selectedCategory) {
-        // Define la URL de la API según la categoría seleccionada
-        const apiUrl = getApiUrl(selectedCategory);
+        const apiUrl = getApiUrl(selectedCategory); //Define la URL de la api
 
         // Inicia el temporizador
         const startTime = Date.now();
@@ -40,21 +39,23 @@ function App() {
         }
     }, [selectedCategory]);
 
+    //Categorias y selección de información
     const getApiUrl = (category) => {
         switch (category) {
         case 'presidents':
-            return 'https://api-colombia.com/api/v1/President';
+            return 'https://api-colombia.com/api/v1/President'; //Sección de presidentes
         case 'airports':
-            return 'https://api-colombia.com/api/v1/Airport';
+            return 'https://api-colombia.com/api/v1/Airport'; //Sección de aeropuertos
         case 'TouristicAttraction':
-            return 'https://api-colombia.com/api/v1/TouristicAttraction';
+            return 'https://api-colombia.com/api/v1/TouristicAttraction'; //Sección de atracciones turisticas
             case 'airportsRegion':
-                return 'https://api-colombia.com/api/v1/Airport';
+                return 'https://api-colombia.com/api/v1/Airport'; //Sección de aeropuertos
         default:
             return '';
         }
     };
 
+    //Visualización de los datos de cada sección
 const renderVisualization = () => {
         if (!data) return <p>Selecciona uno de los items</p>;
 
@@ -74,7 +75,7 @@ const renderVisualization = () => {
         }
     };
 
-    return (
+    return ( //Botones para visualizar
         <div className="App">
         <ul className="button-list">
             <li><button onClick={() => handleButtonClick('presidents')}>Partidos Politicos</button></li>
@@ -95,11 +96,11 @@ const renderVisualization = () => {
         return data.length;
     }
     
-
+    // Variable para almacenar la petición de los partidos politicos
     const groupAndSortPresidentsByParty = (presidents) => {
         const partyCounts = presidents.reduce((acc, president) => {
         const politicalParty = president.politicalParty;
-        if (politicalParty in acc) {
+        if (politicalParty in acc) { //Contador de presidentes por partido politico
             acc[politicalParty]++;
         } else {
             acc[politicalParty] = 1;
@@ -114,7 +115,7 @@ const renderVisualization = () => {
         return sortedParties;
     };
 
-    function PresidentsVisualization({ data, responseTime }) {
+    function PresidentsVisualization({ data, responseTime }) {  //Visualización de la tabla
         const recordCount = countRecords(data);
     return (
         <div className='list_president'>
@@ -143,7 +144,7 @@ const renderVisualization = () => {
     );
     }
 
-    function TouristicAttractionVisualization({ data, responseTime }) {
+    function TouristicAttractionVisualization({ data, responseTime }) {  //Visualización de la tabla de atracciones turisticas
         const groupedData = groupAttractionsByDepartmentAndCity(data);
         const recordCount = countRecords(data);
     
@@ -174,7 +175,7 @@ const renderVisualization = () => {
         );
     }
     
-    function groupAttractionsByDepartmentAndCity(attractions) {
+    function groupAttractionsByDepartmentAndCity(attractions) { //Contador de atracciones por ciudad
         const grouped = attractions.reduce((acc, attraction) => {
             const department = attraction.city.department;
             const city = attraction.city.name;
@@ -196,7 +197,7 @@ const renderVisualization = () => {
     
     
 
-    function AirportsVisualization({ data, responseTime }) {
+    function AirportsVisualization({ data, responseTime }) { //Visualización de aeropuertos por ciudad
         const groupedData = groupAirportsByDepartmentAndCity(data);
         const recordCount = countRecords(data);
     
@@ -230,7 +231,7 @@ const renderVisualization = () => {
     }
     
     
-    function groupAirportsByDepartmentAndCity(airports) {
+    function groupAirportsByDepartmentAndCity(airports) { //Contador de aeropuertos por ciudad
         const grouped = airports.reduce((acc, airport) => {
             // Accede al nombre del departamento
             const department = airport.department?.name || "Sin departamento";
@@ -252,15 +253,16 @@ const renderVisualization = () => {
         return grouped;
     }
 
-    function groupAirportsByRegionDepartmentCityType(airportData) {
+    function groupAirportsByRegionDepartmentCityType(airportData) { //Registro de cada aeropuerto por región
         const groupedAirports = {};
     
-        airportData.forEach(airportsRegion => {
+        airportData.forEach(airportsRegion => { //Validaciones de registros
             const regionName = airportsRegion.department.region?.name || 'Sin Región';
             const departmentName = airportsRegion.department.name || 'Sin Departamento';
             const cityName = airportsRegion.city.name || 'Sin Ciudad';
             const airportType = airportsRegion.type || 'Sin Tipo';
-    
+            
+            // División de registro para el formato establecido por la prueba
             if (!groupedAirports[regionName]) {
                 groupedAirports[regionName] = {};
             }
@@ -283,7 +285,7 @@ const renderVisualization = () => {
         return groupedAirports;
     }
     
-    function AirportsRegionVisualization({ data, responseTime  }) {
+    function AirportsRegionVisualization({ data, responseTime  }) { //Visualización de aeropuertos por Región
         const groupedAirports = groupAirportsByRegionDepartmentCityType(data);
         const recordCount = countRecords(data);
         return (
@@ -326,7 +328,7 @@ const renderVisualization = () => {
         );
     }
 
-    function AirportVisualization({ data }) {
+    function AirportVisualization({ data }) { //Visualización del formato establecido para los datos de aeropuertos por región
         const groupedData = groupAirportsByRegionDepartmentCityType(data);
     
         return (
